@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAVOX – Elite Career Craft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C9A84C;
+            --gold-light: #E8C97A;
+            --gold-dark: #A07830;
+            --navy: #0D2159;
+            --navy-deep: #060D2A;
+            --navy-mid: #1a3578;
+            --ivory: #F7F3EA;
+            --ivory-dark: #EDE5D0;
+            --text-dark: #1a1a2e;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--ivory);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/natural-paper.png');
+            opacity: 0.05; pointer-events: none; z-index: 50;
+        }
+
+        header {
+            padding: 1.5rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(247, 243, 234, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid var(--ivory-dark);
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-weight: 900; font-size: 1.8rem;
+            color: var(--navy); letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--gold); }
+
+        .hero {
+            min-height: 80vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; padding: 2rem;
+            background: radial-gradient(circle at center, #ffffff 0%, var(--ivory) 100%);
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            color: var(--navy-deep); margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            max-width: 650px; font-size: 1.2rem;
+            color: var(--text-dark); opacity: 0.8;
+            margin-bottom: 2.5rem; font-weight: 300;
+        }
+
+        .btn-royal {
+            padding: 1.2rem 3rem;
+            background: var(--navy); color: var(--gold-light);
+            font-family: 'Cinzel', serif; font-weight: 700;
+            border: 1px solid var(--gold);
+            cursor: pointer; transition: var(--transition);
+            text-transform: uppercase; letter-spacing: 2px;
+            position: relative; z-index: 1;
+        }
+
+        .btn-royal:hover {
+            background: var(--gold); color: var(--navy-deep);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(160, 120, 48, 0.2);
+        }
+
+        .container { max-width: 1000px; margin: 4rem auto; padding: 0 2rem; }
+
+        .wizard-card {
+            background: white; padding: 3.5rem;
+            border-top: 5px solid var(--gold);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+            border-radius: 2px;
+        }
+
+        .input-group { margin-bottom: 2rem; }
+        .input-group label {
+            display: block; font-family: 'Cinzel', serif;
+            margin-bottom: 0.8rem; color: var(--navy); 
+            font-size: 0.85rem; font-weight: 700; letter-spacing: 1px;
+        }
+
+        input, textarea {
+            width: 100%; padding: 1.2rem;
+            border: 1px solid var(--ivory-dark);
+            font-family: 'Montserrat', sans-serif;
+            background: #fcfcfc; transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        input:focus, textarea:focus { 
+            border-color: var(--gold); 
+            outline: none; 
+            background: white;
+            box-shadow: 0 0 15px rgba(201, 168, 76, 0.1);
+        }
+
+        .cv-doc {
+            background: white; padding: 5rem; margin-top: 4rem;
+            box-shadow: 0 40px 80px rgba(13, 33, 89, 0.15);
+            border: 1px solid var(--ivory-dark);
+            position: relative; max-width: 850px; margin-left: auto; margin-right: auto;
+        }
+
+        .cv-header {
+            text-align: center; border-bottom: 3px double var(--gold);
+            padding-bottom: 2.5rem; margin-bottom: 2.5rem;
+        }
+
+        .cv-name {
+            font-family: 'Cinzel', serif; font-size: 3rem;
+            color: var(--navy-deep); text-transform: uppercase;
+            letter-spacing: 4px; line-height: 1; margin-bottom: 0.5rem;
+        }
+
+        .cv-sec-title {
+            font-family: 'Cinzel', serif; color: var(--gold-dark);
+            border-bottom: 1px solid var(--gold-light);
+            margin: 2rem 0 1.2rem; padding-bottom: 8px;
+            font-size: 1.4rem; letter-spacing: 2px; font-weight: 700;
+        }
+
+        #out-summary { font-size: 1.1rem; color: #444; line-height: 1.8; text-align: justify; }
+
+        @media (max-width: 768px) {
+            .cv-doc { padding: 2.5rem 1.5rem; }
+            .cv-name { font-size: 2rem; }
+            header { padding: 1rem 5%; }
+            .wizard-card { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grain"></div>
+
+    <header>
+        <a href="#" class="logo">KAVOX<span>.</span></a>
+        <div style="font-family:'Cinzel'; font-size: 0.7rem; letter-spacing: 1px; color: var(--gold-dark);">EST. 2024</div>
+    </header>
+
+    <main>
+        <section class="hero" id="hero">
+            <div style="color: var(--gold); font-family: 'Cinzel'; letter-spacing: 5px; margin-bottom: 1rem; font-weight: 700;">PREMIUM CAREER ARCHITECTURE</div>
+            <h1>Engineered for Excellence</h1>
+            <p>We don't just write resumes; we architect professional legacies for the world's most ambitious leaders.</p>
+            <button class="btn-royal" onclick="startBuild()">Build Your Legacy</button>
+        </section>
+
+        <section class="container" id="page-create" style="display:none;">
+            <div class="wizard-card" id="wizard">
+                <h2 style="font-family:'Cinzel'; margin-bottom: 2.5rem; color: var(--navy); text-align: center; letter-spacing: 2px;">Professional Identity</h2>
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="in-name" placeholder="E.G. ALEXANDER VANCE">
+                </div>
+                <div class="input-group">
+                    <label>Professional Designation</label>
+                    <input type="text" id="in-title" placeholder="E.G. CHIEF STRATEGY OFFICER">
+                </div>
+                <div class="input-group">
+                    <label>The Professional Narrative</label>
+                    <textarea id="in-exp" rows="6" placeholder="Describe your career milestones and executive impact..."></textarea>
+                </div>
+                <button class="btn-royal" style="width: 100%;" id="gen-btn" onclick="generateCV()">Forge Document</button>
+            </div>
+
+            <div id="cv-result" style="display:none; padding-bottom: 5rem;">
+                <div class="cv-doc" id="printable-cv">
+                    <div class="cv-header">
+                        <div class="cv-name" id="out-name">NAME</div>
+                        <div id="out-title" style="color: var(--navy); font-weight: 600; font-family: 'Montserrat'; letter-spacing: 3px; text-transform: uppercase; font-size: 0.9rem;">TITLE</div>
+                    </div>
+                    <div class="cv-sec-title">Executive Profile</div>
+                    <div id="out-summary">Your professional narrative will be rendered here...</div>
+                    <div style="margin-top: 4rem; border-top: 1px solid var(--ivory-dark); padding-top: 1rem; font-family: 'Cinzel'; font-size: 0.6rem; color: var(--gold-dark); text-align: center;">
+                        Generated by KAVOX Elite Systems
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn-royal" style="background: var(--gold); color: white;" onclick="window.print()">Export to PDF</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function startBuild() {
+            document.getElementById('hero').style.display = 'none';
+            document.getElementById('page-create').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function generateCV() {
+            const name = document.getElementById('in-name').value;
+            const title = document.getElementById('in-title').value;
+            const summary = document.getElementById('in-exp').value;
+
+            if(!name || !title) {
+                alert("Please complete the identity fields.");
+                return;
+            }
+
+            document.getElementById('out-name').textContent = name.toUpperCase();
+            document.getElementById('out-title').textContent = title.toUpperCase();
+            document.getElementById('out-summary').textContent = summary || "Executive summary pending input...";
+            
+            document.getElementById('cv-result').style.display = 'block';
+            
+            const target = document.getElementById('cv-result').offsetTop;
+            window.scrollTo({
+                top: target - 50,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
